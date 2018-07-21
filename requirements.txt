@@ -1,0 +1,4 @@
+flask==1.0.2
+paramiko==2.4.1
+gunicorn==19.8.1
+prometheus_client==0.2.0
