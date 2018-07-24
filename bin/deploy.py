@@ -91,12 +91,15 @@ class PHPDeploy:
             # 判断是否有回调脚本, 如果有就执行回调脚本
             try:
                 sftp.stat(self.remote_post_script_abspath)
+                logger.info("提示: {0}有回调脚本!".format(self.project_name))
                 stdin, stdout, stderr = client.exec_command("/bin/bash {0}".format(self.remote_post_script_abspath), timeout=config.CMD_TIMEOUT)
                 err = stderr.read()
                 out = stdout.read()
+                if out:
+                    logger.info("{0}回调脚本返回: {1}".format(self.project_name, out))
                 if err:
                     failed[ip] = "回调脚本执行报错: {0}".format(err)
-                    logging.warning("{0}回调脚本执行报错: {1}".format(ip, err))
+                    logger.warning("{0}回调脚本执行报错: {1}".format(ip, err))
                     return
             except FileNotFoundError:
                 logger.info("提示: {0}没有回调脚本!".format(self.project_name))

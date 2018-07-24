@@ -18,8 +18,8 @@ class Config(object):
     DEPLOY_TARFILE_DIR = ".deploy"
     DEPLOY_POST_SCRIPT_NAME = "____post-deploy.sh"
     # 操作超时时间(秒)
-    SSH_TIMEOUT = 90
-    CMD_TIMEOUT = 90
+    SSH_TIMEOUT = 120
+    CMD_TIMEOUT = 120
     RESTART_SERVICE_TIMEOUT = 90
     # 日志文件路径
     LOG_FILE_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "log", "app.log")
